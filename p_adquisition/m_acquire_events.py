@@ -21,6 +21,6 @@ def paged_url(url: str):
         html = html + ' ' + str(requests.get(i).content)
 
     soup = BeautifulSoup(html, 'lxml')
-    events = soup.find_all('div', {'eds-event-card-content__primary-content'})
-
+    events = set(soup.find_all('aside', {'class': 'eds-event-card-content__image-container'}))
+    events = list(events)
     return events
